@@ -19,14 +19,13 @@ const InputCard = () => {
     const [serverResponse, setHasResponse] = useState<AxiosResponse | null>(null)
 
     const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
-        console.log(event)
-        setAmount(Number.parseInt(event.target.value))
+        const number = Number.parseInt(event.target.value) || 0
+        setAmount(number)
     }
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault()
-        console.log(amount)
-        console.log(event)
+
         try {
             const response = await axios.post(BACKEND_URL + "/projects", { amount: amount });
             console.log(response.data);
@@ -41,7 +40,7 @@ const InputCard = () => {
         <div>
             <form onSubmit={handleSubmit}>
                 <div className="flex flex-col justify-center items-center">
-                    <label>Input desired Carbon Credits</label>
+                    <label className="p-2">Input desired Carbon Credits</label>
                     <input
                         className="p-2"
                         name="amount"
