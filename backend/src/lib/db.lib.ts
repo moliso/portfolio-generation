@@ -44,8 +44,6 @@ function executeQuery(options: { query: string, values?: any, batch?: boolean })
         })
 }
 
-function executeQueriesAsTransaction() { }
-
 export {
     executeQuery
 }

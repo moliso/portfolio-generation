@@ -3,13 +3,10 @@ import * as express from "express"
 import * as db from "../lib/db.lib"
 import * as allocation from "../lib/allocation.lib"
 import { Project, ProjectAllocation } from "../types/project.interface";
-import { request } from "http";
 
 const database = process.env.DB_DATABASE;
 
-
 function getAllProjects(req: express.Request, res: express.Response, next: express.NextFunction) {
-    console.log("reached get projects")
     db.executeQuery({
         query: `
             SELECT 
@@ -38,8 +35,6 @@ function getAllProjects(req: express.Request, res: express.Response, next: expre
 }
 
 function getCustomerAllocation(req: express.Request, res: express.Response, next: express.NextFunction) {
-    console.log("REached")
-    console.log(req.body)
     const requestedAmount = req.body.amount;
 
     db.executeQuery({

@@ -29,7 +29,6 @@ export function allocateCarbonCredits(requestedAmount: number, projectData: Proj
             } else return 0
         }).reduce((a,b) => a + b, 0)
 
-        console.log(remainingDistributionWeight)
         // take the non full projects and redsitribute evenly according to weightDistribution
     }
 
