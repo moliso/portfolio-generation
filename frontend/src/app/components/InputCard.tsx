@@ -58,8 +58,8 @@ const InputCard = () => {
                     <div>
                         <span>Suggested Project Allocation</span>
                         {(
-                            serverResponse.data.map((i: ProjectAllocation) => {
-                                <span>{i.id}</span>
+                            serverResponse.data.map((project: ProjectAllocation) => {
+                                // porftolio card with props from project
                             })
                         )}
                     </div>
