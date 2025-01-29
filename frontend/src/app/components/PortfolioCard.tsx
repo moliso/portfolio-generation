@@ -12,7 +12,6 @@ interface CardProps {
 
 
 const PortfolioCard: React.FC<CardProps> = ({ name, image, country, supplierName, description, allocatedTonnage }) => {
-    console.log(allocatedTonnage)
     return (
         <div style={cardStyle}>
             <h3><strong>{name}</strong></h3>

@@ -25,8 +25,6 @@ function getAllProjects(req: express.Request, res: express.Response, next: expre
         values: []
     })
         .then((projects: Project[]) => {
-            console.log(projects)
-
             res.status(200).json(projects)
         })
         .catch(err => {
@@ -56,8 +54,6 @@ function getCustomerAllocation(req: express.Request, res: express.Response, next
     })
         .then((projects: ProjectAllocation[]) => {
             const tonnageDistribution = allocation.allocateCarbonCredits(requestedAmount, projects)
-            console.log(tonnageDistribution)
-
 
             res.status(200).json(tonnageDistribution)
         })

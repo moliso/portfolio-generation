@@ -17,11 +17,9 @@ function Project() {
     const [projects, setData] = useState<Project[]>([])
     const [isLoading, setLoading] = useState<boolean>(true)
 
-    console.log(BACKEND_URL)
     useEffect(() => {
         axios.get(BACKEND_URL + '/projects')
             .then(response => {
-                console.log(response)
                 setData(response.data)
                 setLoading(false)
             })

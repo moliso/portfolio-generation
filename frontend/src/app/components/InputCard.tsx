@@ -36,7 +36,6 @@ const InputCard = () => {
         }
     }
 
-    console.log(serverResponse?.data);
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -62,8 +61,6 @@ const InputCard = () => {
                         <div className="flex flex-col bg-scroll">
                             {(
                                 serverResponse.data.map((project: ProjectAllocation) => {
-                                    console.log(project)
-                                    // porftolio card with props from project
                                     return <div>
                                         <PortfolioCard
                                             name={project.name}
