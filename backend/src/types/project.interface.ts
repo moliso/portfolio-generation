@@ -12,5 +12,5 @@ export interface Project {
 }
 
 export interface ProjectAllocation extends Project {
-    allocatedTonage: number
+    allocatedTonnage: number
 }

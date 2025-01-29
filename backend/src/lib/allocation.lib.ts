@@ -13,10 +13,10 @@ export function allocateCarbonCredits(requestedAmount: number, projectData: Proj
 
         // if amount exceeds volume add the remaining amount to supply shortfall
         if (allocationAmount > volume) {
-            projectData[i].allocatedTonage = volume
+            projectData[i].allocatedTonnage = volume
             supplyShortfall = supplyShortfall + (allocationAmount - volume)
         } else {
-            projectData[i].allocatedTonage = allocationAmount
+            projectData[i].allocatedTonnage = allocationAmount
         }
     }
 
@@ -24,16 +24,27 @@ export function allocateCarbonCredits(requestedAmount: number, projectData: Proj
     if (supplyShortfall > 0) {
         //get remaining distribution weights and calculate the sum to use in proportion calculation
         const remainingDistributionWeight = projectData.map((project: ProjectAllocation) => {
-            if (project.offeredVolume > project.allocatedTonage) {
+            if (project.offeredVolume > project.allocatedTonnage) {
                 return project.distributionWeight
             } else return 0
-        }).reduce((a,b) => a + b, 0)
+        }).reduce((a, b) => a + b, 0)
 
         // take the non full projects and redsitribute evenly according to weightDistribution
+        for (let i = 0; i < projectData.length; i++) {
+
+        }
+
+        projectData.map((project: ProjectAllocation) => {
+            if (project.offeredVolume > project.allocatedTonnage) {
+                const distribution = Math.floor(project.distributionWeight * (project.distributionWeight / remainingDistributionWeight))
+            }
+        })
     }
 
+    // if shortfall still > 0 return error -> not enough volume to satisfy demand
+    if (supplyShortfall > 0) return
 
-    const sortedData = projectData.sort((a: ProjectAllocation, b: ProjectAllocation) => b.allocatedTonage - a.allocatedTonage)
+    const sortedData = projectData.sort((a: ProjectAllocation, b: ProjectAllocation) => b.allocatedTonnage - a.allocatedTonnage)
 
     return sortedData
 }

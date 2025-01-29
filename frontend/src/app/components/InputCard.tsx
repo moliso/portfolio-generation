@@ -1,6 +1,7 @@
 'use client';
 import axios, { AxiosResponse } from "axios";
 import React, { ChangeEvent, FormEvent, useState } from "react"
+import PortfolioCard from "./PortfolioCard";
 
 const BACKEND_URL = "http://localhost:3000"
 
@@ -28,7 +29,6 @@ const InputCard = () => {
 
         try {
             const response = await axios.post(BACKEND_URL + "/projects", { amount: amount });
-            console.log(response.data);
             setHasResponse(response)
         } catch (error) {
             console.log(error);
@@ -36,6 +36,7 @@ const InputCard = () => {
         }
     }
 
+    console.log(serverResponse?.data);
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -54,13 +55,28 @@ const InputCard = () => {
             </form>
             <div className="flex flex-col">
                 {serverResponse?.data && (
-                    <div>
-                        <span>Suggested Project Allocation</span>
-                        {(
-                            serverResponse.data.map((project: ProjectAllocation) => {
-                                // porftolio card with props from project
-                            })
-                        )}
+                    <div className="flex flex-col justify-center align-center">
+                        <div className="p-2 flex justify-center">
+                            <h2><strong>Suggested Project Allocation</strong></h2>
+                        </div>
+                        <div className="flex flex-col bg-scroll">
+                            {(
+                                serverResponse.data.map((project: ProjectAllocation) => {
+                                    console.log(project)
+                                    // porftolio card with props from project
+                                    return <div>
+                                        <PortfolioCard
+                                            name={project.name}
+                                            image={project.image}
+                                            country={project.country}
+                                            supplierName={project.supplierName}
+                                            description={project.description}
+                                            allocatedTonnage={project.allocatedTonnage}>
+                                        </PortfolioCard>
+                                    </div>
+                                })
+                            )}
+                        </div>
                     </div>
                 )}
             </div>
